@@ -8,7 +8,7 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Upload, message } from 'antd';
 import type { UploadProps } from 'antd';
-import { Plus, Trash2, FileText, Circle, CirclePlus } from 'lucide-react';
+import { Trash2, FileText, CirclePlus } from 'lucide-react';
 import { createPipSchema } from '@/schemas/create-pip-schema';
 import type { FormData } from '@/schemas/create-pip-schema';
 

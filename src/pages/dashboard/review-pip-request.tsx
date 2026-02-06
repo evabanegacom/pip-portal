@@ -1,7 +1,7 @@
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
-import { ArrowBigDown, Download, Eye } from 'lucide-react';
+import { ArrowBigDown, ArrowBigDownIcon, ChevronDown, Download, Eye, MoveLeft } from 'lucide-react';
 import DropdownComponent from '@/components/dropdown';
 import { DropdownMenu } from 'radix-ui';
 import { useNavigate } from 'react-router-dom';
@@ -38,8 +38,8 @@ export default function PIPReviewDetails() {
       <div className='flex items-center justify-between'>
         <Button 
         onClick={() => navigate(`${RoutePath.DASHBOARD}/${RoutePath.VIEW_PIP_REQUESTS}`)}
-        variant="outline" className="mb-4">
-          Back to PIP Requests
+        className="mb-4 bg-transparent text-[#000000] text-lg flex items-center gap-1 hover:bg-gray-100">
+          <MoveLeft size={20}/> <span className="ml-2">Go Back</span>
         </Button>
 
         <div className="flex flex-wrap items-center justify-between gap-2">
@@ -50,15 +50,16 @@ export default function PIPReviewDetails() {
                             <Button
                               type="button"
                               
-                              className="h-[36px] px-2 md:px-4 dark:bg-theme-darker dark:text-light-400 dark:hover:bg-theme-dark hover:bg-light-50"
+                              className="h-[36px] border border-red-500 px-2 md:px-4 text-[#DB353A] bg-red-100 rounded-4xl"
                             >
-                              <ArrowBigDown size={20} />
+                              
                               <span className="ml-2 text-[14px]">
                                 Action
                               </span>
+                              <ChevronDown />
                             </Button>
                           }
-                          dropdownContentClassName="dark:bg-theme-darker"
+                          dropdownContentClassName=""
                         >
                           <DropdownMenu.Item
                             onClick={() => {
@@ -99,7 +100,7 @@ export default function PIPReviewDetails() {
                         </DropdownComponent>
               </div>
       </div>
-    <div className="max-w-5xl mx-auto p-6 space-y-8">
+    <div className="max-w-5xl mx-auto space-y-8">
       {/* Employee Info */}
       <div>
         <h2 className="text-lg font-semibold mb-4">Employee Information</h2>
@@ -115,8 +116,8 @@ export default function PIPReviewDetails() {
             { label: 'PIP Status', value: employee.pipStatus, highlight: true },
             { label: 'Group', value: employee.group },
           ].map((item, i) => (
-            <Card key={i} className="bg-slate-50">
-              <CardContent className="p-3">
+            <Card key={i} className="bg-[#F9F9F9]">
+              <CardContent className="">
                 <p className="text-xs text-slate-500">{item.label}</p>
                 <p className={`font-medium ${item.highlight ? 'text-orange-500' : ''}`}>{item.value}</p>
               </CardContent>
@@ -150,7 +151,7 @@ export default function PIPReviewDetails() {
         <div className="space-y-4">
           {kpis.map(kpi => (
             <Card key={kpi.id} className="bg-slate-50">
-              <CardContent className="p-4 space-y-2">
+              <CardContent className="space-y-2">
                 <p className="text-sm text-slate-500">{kpi.target}</p>
                 <p className="text-sm font-medium">{kpi.result}</p>
                 <div className="flex items-center gap-3">
@@ -181,7 +182,7 @@ export default function PIPReviewDetails() {
       {/* Recommendations */}
       <div>
         <h2 className="text-lg font-semibold mb-2">Line Manager’s Recommendation</h2>
-        <Card><CardContent className="p-3">Take Off PIP</CardContent></Card>
+        <Card><CardContent className="">Take Off PIP</CardContent></Card>
       </div>
 
       <div>
@@ -191,12 +192,12 @@ export default function PIPReviewDetails() {
 
       <div>
         <h2 className="text-lg font-semibold mb-2">Second Line Manager’s Recommendation</h2>
-        <Card><CardContent className="p-3">Take Off PIP</CardContent></Card>
+        <Card><CardContent className="">Take Off PIP</CardContent></Card>
       </div>
 
       <div>
         <h2 className="text-lg font-semibold mb-2">Second Line Manager’s Comment</h2>
-        <Card><CardContent className="p-3">{kpis[0].result}</CardContent></Card>
+        <Card><CardContent className="">{kpis[0].result}</CardContent></Card>
       </div>
 
       {/* Comment Box */}

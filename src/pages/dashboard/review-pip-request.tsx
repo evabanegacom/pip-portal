@@ -1,7 +1,7 @@
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
-import { ArrowBigDown, ArrowBigDownIcon, ChevronDown, Download, Eye, MoveLeft } from 'lucide-react';
+import { ChevronDown, Download, Eye, MoveLeft } from 'lucide-react';
 import DropdownComponent from '@/components/dropdown';
 import { DropdownMenu } from 'radix-ui';
 import { useNavigate } from 'react-router-dom';

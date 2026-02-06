@@ -23,7 +23,7 @@ const Sidebar = () => {
   const currentRoute = useSelector((state: RootState) => state?.route?.currentRoute);
   
   // Temporary hardcoded role – replace with real auth later
-  const userRole = 'Admin' as UserRoleType;
+  const userRole = 'Supervisor' as UserRoleType;
 
   // Sync route with location
   useEffect(() => {
@@ -49,8 +49,8 @@ const Sidebar = () => {
             path: dashboardPath(RoutePath.TAKE_ASSESSMENT),
           },
           {
-            name: 'View PIP Requests',
-            path: dashboardPath(RoutePath.VIEW_PIP_REQUESTS),
+            name: 'View PIP',
+            path: dashboardPath(RoutePath.VIEW_PIP_REQUEST),
           },
         ]
       : []),
@@ -98,6 +98,8 @@ const Sidebar = () => {
             } else if (item.name.toLowerCase().includes('review')) {
               IconComponent = LayoutGrid;
             }else if (item.name.toLowerCase().includes('create')) {
+              IconComponent = LayoutGrid;
+            }else if (item.name.toLowerCase().includes('take')) {
               IconComponent = LayoutGrid;
             }
 

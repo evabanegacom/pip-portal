@@ -31,11 +31,11 @@ const DUMMY_DATA: PIPRow[] = Array.from({ length: 42 }).map((_, i) => {
 });
 
 // Status tag colors
-const statusColors: Record<PIPRow['status'], string> = {
-  'Pending 2nd LM': 'orange',
-  'Completed': 'green',
-  'Yet to Start': 'default',
-  'Pending LM': 'orange',
+const statusColors: Record<PIPRow['status'], {text: string; bg: string}> = {
+  'Pending 2nd LM': {text: '#FFFFFF', bg: '#FF9500'},
+  'Completed': {text: '#FFFFFF', bg: '#34C759'},
+  'Yet to Start': {text: '#FFFFFF', bg: '#C4C4C4'},
+  'Pending LM': {text: '#FFFFFF', bg: '#FF9500'},
 };
 
 const PIPTableWithPagination = () => {
@@ -91,7 +91,9 @@ const PIPTableWithPagination = () => {
       dataIndex: 'status',
       key: 'status',
       render: (status: PIPRow['status']) => (
-        <Tag color={statusColors[status]}>{status}</Tag>
+        <Tag color={statusColors[status].text}
+        style={{ backgroundColor: statusColors[status].bg }}
+        >{status}</Tag>
       ),
     },
     {
@@ -103,6 +105,7 @@ const PIPTableWithPagination = () => {
           type="default"
           size="small"
           onClick={() => navigate(`/dashboard/review-pip-request/${record.id}`)}
+          className='text-[#6C757D] text-xs font-semibold border border-[#6C757D] rounded-sm px-2'
         >
           View Details
         </Button>
@@ -130,23 +133,47 @@ const PIPTableWithPagination = () => {
 
         {/* Ant Design Table with built-in pagination */}
         <Table
-          columns={columns}
-          dataSource={filteredData}
-          rowKey="id"
-          pagination={{
-            current: currentPage,
-            pageSize: pageSize,
-            total: filteredData.length,
-            showSizeChanger: false,
-            showTotal: total => `Showing ${((currentPage - 1) * pageSize + 1)}-${Math.min(currentPage * pageSize, total)} of ${total} entries`,
-            onChange: (page) => setCurrentPage(page),
-            position: ['bottomRight'],
+  columns={columns}
+  dataSource={filteredData}
+  rowKey="id"
+  pagination={{
+    current: currentPage,
+    pageSize: pageSize,
+    total: filteredData.length,
+    showSizeChanger: false,
+    showTotal: total => `Showing ${((currentPage - 1) * pageSize + 1)}-${Math.min(currentPage * pageSize, total)} of ${total} entries`,
+    onChange: (page) => setCurrentPage(page),
+    position: ['bottomRight'],
+  }}
+  bordered
+  size="middle"
+  scroll={{ x: 'max-content' }}
+  locale={{ emptyText: 'No PIP requests found' }}
+  components={{
+    header: {
+      cell: (props) => (
+        <th
+          {...props}
+          style={{
+            backgroundColor: '#6C757D',
+            color: '#ffffff',
+            fontWeight: 600,
           }}
-          bordered
-          size="middle"
-          scroll={{ x: 'max-content' }} // horizontal scroll on small screens
-          locale={{ emptyText: 'No PIP requests found' }}
         />
+      ),
+    },
+    body: {
+      cell: (props) => (
+        <td
+          {...props}
+          style={{
+            color: '#6C757D',
+          }}
+        />
+      ),
+    },
+  }}
+/>
       </div>
     </Card>
   );

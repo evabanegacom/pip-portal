@@ -10,6 +10,7 @@ export default function DashboardLayout() {
   { pattern: /^\/dashboard\/create-pip-request$/, name: 'Create PIP Request' },
   { pattern: /^\/dashboard\/take-assessment$/, name: 'Take Assessment' },
   { pattern: /^\/dashboard\/pip-requests$/, name: 'View PIP Requests' },
+  { pattern: /^\/dashboard\/view-pip-request$/, name: 'View PIP Request' },
   { pattern: /^\/dashboard\/review-pip-request(\/\d+)?$/, name: 'Review PIP Request' }, // handles /:id
 ]
 
